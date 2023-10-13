@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<title>Base Layout</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<header>
 		<div align="center">
 			<h1>Incohearent</h1>
 		</div>
-		<hr/>
 	</header>
+	<hr />
 	
-	<div></div>
+	<div layout:fragment="content" align="center">
+		
+	</div>
+	
+	<footer>
+		<hr />
+		<div align="center">
+			<p>copyright Teppei Abe</p>
+		</div>
+	</footer>
 </body>
 </html>
