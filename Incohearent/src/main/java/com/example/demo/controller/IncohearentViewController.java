@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("Incohearent")
 public class IncohearentViewController {
 	
-	@GetMapping("view")
+	@GetMapping("index")
 	public String indexView()
 	{
 		return "index";
