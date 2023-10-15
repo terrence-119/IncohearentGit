@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.form.Form;
+import com.example.demo.form.AccountForm;
 
 
 @Controller
@@ -18,9 +22,21 @@ public class IncohearentViewController {
 		return "index";
 	}
 	
-	@PostMapping("confirm")
-	public String confirmView(Form f)
+	/** 「form-backing bean」の初期化 */
+	@ModelAttribute
+	public AccountForm setUpForm()
 	{
+		return new AccountForm();
+	}
+	
+	@PostMapping("confirm")
+	public String confirmView(@Validated AccountForm f, BindingResult bindingResult, Model model)
+	{
+		if (bindingResult.hasErrors())
+		{
+			return "index";
+		}
+		
 		return "confirm";
 	}
 }

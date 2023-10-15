@@ -7,19 +7,25 @@
 <body>
 	<div layout:fragment="content">
 		<h2>Sign up for Tournaments!</h2>
-		<form th:action="@{/Incohearent/confirm}" method="post">
+		<form th:action="@{/Incohearent/confirm}" method="post" th:object="${accountForm}"}>
 			<div>
 				<label for="email">E-mail:</label>
-				<input type="text" name="email">
+				<input type="text" th:field="*{email}">
+				<span id="email-errors" th:errors="*{email}" class="error-message"></span>
 			</div>
+			
 			<div>
 				<label for="username">Username:</label>
-				<input type="text" name="username">
+				<input type="text" th:field="*{username}">
+				<span id="username-errors" th:errors="*{username}" class="error-message"></span>
 			</div>
+			
 			<div>
 				<label for="password">Password:</label>
-				<input type="text" name="password">
+				<input type="password" th:field="*{password}">
+				<span id="password-errors" th:errors="*{password}" class="error-message"></span>
 			</div>
+			
 			<input type="submit" value="Sign up">
 		</form>
 	</div>
