@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{commons/layout}">
 <head>
 <meta charset="UTF-8">
-<title>Let's play Incohearent</title>
+<title th:text="#{title.index}">Title</title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -25,8 +25,7 @@
 				<input type="password" th:field="*{password}">
 				<span id="password-errors" th:errors="*{password}" class="error-message"></span>
 			</div>
-			
-			<input type="submit" value="Sign up">
+			<button type="submit" th:text="#{button.send}"></button>
 		</form>
 	</div>
 </body>
