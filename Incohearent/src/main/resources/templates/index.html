@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{commons/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
 <head>
 <meta charset="UTF-8">
 <title th:text="#{title.index}">Title</title>
 </head>
 <body>
-	<div layout:fragment="content">
+	<div layout:fragment="main">
 		<h2>Sign up for Tournaments!</h2>
 		<form th:action="@{/Incohearent/confirm}" method="post" th:object="${accountForm}"}>
 			<div>
 				<label for="email">E-mail:</label>
-				<input type="text" th:field="*{email}">
+				<input type="text" th:field="*{email}"><br>
 				<span id="email-errors" th:errors="*{email}" class="error-message"></span>
 			</div>
 			
 			<div>
 				<label for="username">Username:</label>
-				<input type="text" th:field="*{username}">
+				<input type="text" th:field="*{username}"><br>
 				<span id="username-errors" th:errors="*{username}" class="error-message"></span>
 			</div>
 			
 			<div>
 				<label for="password">Password:</label>
-				<input type="password" th:field="*{password}">
+				<input type="password" th:field="*{password}"><br>
 				<span id="password-errors" th:errors="*{password}" class="error-message"></span>
 			</div>
 			<button type="submit" th:text="#{button.send}"></button>
