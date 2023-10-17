@@ -2,6 +2,9 @@ package com.example.demo.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface AccountCrudRepository extends CrudRepository<T, ID> {
+import com.example.demo.entity.Account;
+
+public interface AccountCrudRepository extends CrudRepository<Account, Integer> 
+{
 
 }
