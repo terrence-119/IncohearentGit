@@ -13,7 +13,8 @@ import com.example.demo.form.AccountForm;
 
 @Controller
 @RequestMapping("Incohearent")
-public class IncohearentViewController {
+public class IncohearentViewController 
+{
 	
 	@GetMapping("index")
 	public String indexView()
