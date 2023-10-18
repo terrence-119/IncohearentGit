@@ -5,8 +5,13 @@
 <title th:text="#{title.index}">Title</title>
 </head>
 <body>
-	<div layout:fragment="main">
-		<h2>Sign in</h2>
+	<header>
+		<div align="center">
+			<h1>Incohearent</h1>
+		</div>
+	</header>
+	<div layout:fragment="main" align="center">
+		<h2>Sign up</h2>
 		<form th:action="@{/Incohearent/confirm}" method="post" th:object="${accountForm}"}>
 			<div>
 				<label for="email">E-mail:</label>
@@ -28,5 +33,8 @@
 			<button type="submit" th:text="#{button.send}"></button>
 		</form>
 	</div>
+	<footer>
+		<p align="center">copyright Teppei Abe</p>
+	</footer>
 </body>
 </html>
