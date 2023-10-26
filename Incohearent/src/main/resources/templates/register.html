@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{title.index}">Title</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header">
+			<a href="http://localhost:8080/Incohearent/play" class="logo">Incohearent</a>
+			<div class="header-right">
+				<a class="active" href="http://localhost:8080/Incohearent/signup/index">Logout</a>
+				<a class="active" href="http://localhost:8080/Incohearent/register">Register</a>
+				<a class="active" href="#contact">Contact</a>
+			</div>
+		</div>
+	</header>
+	<h1>Create Card</h1>
+	<!-- Register complete comment -->
+	<p th:if="${complete}" th:text="${complete}" style="color: blue"></p>
+	<!-- Form from here -->
+	<form th:action="@{/Incohearent/insert}" method="POST" th:object="${cardForm}">
+		<label>Card Question</label><br>
+		<textarea rows="5" cols="50" th:field="*{question}"></textarea><br>
+		<span id="question-errors" th:errors="*{question}" class="error-message"></span>
+		
+		<label>Card Answer</label><br>
+		<textarea rows="5" cols="50" th:field="*{answer}"></textarea><br>
+		<span id="answer-errors" th:errors="*{answer}" class="error-message"></span>
+		
+		<label>Card Description</label><br>
+		<textarea rows="5" cols="50" th:field="*{description}"></textarea><br>
+		<span id="description-errors" th:errors="*{description}" class="error-message"></span>
+		
+		<input th:if="${id}" type="hidden" th:field="*{id}">
+		<input type="submit" value="Create">
+	</form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Let's Play Incohearent</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header">
+			<a href="http://localhost:8080/Incohearent/play" class="logo">Incohearent</a>
+			<div class="header-right">
+				<a class="active" href="http://localhost:8080/Incohearent/signup/index">Logout</a>
+				<a class="active" href="http://localhost:8080/Incohearent/register">Register</a>
+				<a class="active" href="#contact">Contact</a>
+			</div>
+		</div>
+	</header>
+	
+	<h1>Incohearent</h1>
+	<h3>Card</h3>
+	<th:block th:if="${msg}">
+		<p th:text="${msg}" style="color:red"></p>
+		<a th:href="@{/Incohearent/confirm/}">Home</a>
+	</th:block>
+	<th:block th:unless="${msg}">
+		<p th:text="${cardForm.question}">Question</p>
+		<form th:action="@{/Incohearent/check}" th:object="${cardForm}" method="POST">
+			<input type="hidden" th:field="*{card_id}">
+			<input type="text" name="answer" placeholder="Answer">
+		</form>
+	</th:block>
+	
+	<footer>
+		<p align="center">copyright Teppei Abe</p>
+	</footer>
+</body>
+</html>
