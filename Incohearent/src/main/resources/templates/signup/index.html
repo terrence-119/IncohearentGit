@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{title.index}">Title</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+		<header>
+			<div class="header">
+				<a href="http://localhost:8080/Incohearent/play" class="logo">Incohearent</a>
+				<div class="header-right">
+					<a class="active" href="http://localhost:8080/Incohearent/signup/index">Logout</a>
+					<a class="active" href="http://localhost:8080/Incohearent/register">Register</a>
+					<a class="active" href="#contact">Contact</a>
+				</div>
+			</div>
+		</header>
+			<div>
+				<h2>Sign up</h2>
+				<form th:action="@{/Incohearent/signup/confirm}" method="post" th:object="${accountForm}"}>
+					<div class="cp_iptxt">
+						<input type="text" th:field="*{email}" placeholder="E-Mail"><br>
+						<i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"></i>
+						<span id="email-errors" th:errors="*{email}" class="error-message"></span>
+					</div>
+					
+					<div class="cp_iptxt">
+						<input type="text" th:field="*{username}" placeholder="Username"><br>
+						<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+						<span id="username-errors" th:errors="*{username}" class="error-message"></span>
+					</div>
+					
+					<div class="cp_iptxt">
+						<input type="password" th:field="*{password}" placeholder="Password"><br>
+						<i class="fa fa-password fa-lg fa-fw" aria-hidden="true"></i>
+						<span id="password-errors" th:errors="*{password}" class="error-message"></span>
+					</div>
+					<button type="submit" th:text="#{button.send}" class="button"></button>
+				</form>
+			</div>
+		<footer class="footer">
+			<p align="center">copyright Teppei Abe</p>
+		</footer>
+</body>
+</html>

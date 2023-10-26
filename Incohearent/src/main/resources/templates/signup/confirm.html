@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{title.index}">Title</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header">
+			<a href="http://localhost:8080/Incohearent/play" class="logo">Incohearent</a>
+			<div class="header-right">
+				<a class="active" href="http://localhost:8080/Incohearent/signup/index">Logout</a>
+				<a class="active" href="http://localhost:8080/Incohearent/register">Register</a>
+				<a class="active" href="#contact">Contact</a>
+			</div>
+		</div>
+	</header>
+	<h2>Hello, [[${accountForm.username}]]!</h2>
+	<a href="http://localhost:8080/Incohearent/play" class="btn_06">PLAY</a>
+	<footer align="center">
+		<p>copyright Teppei Abe</p>
+	</footer>
+</body>
+</html>
