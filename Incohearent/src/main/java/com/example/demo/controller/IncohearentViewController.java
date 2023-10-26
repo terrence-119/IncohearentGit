@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Account;
@@ -36,11 +39,28 @@ public class IncohearentViewController
 		return new AccountForm();
 	}
 	
-	@ModelAttribute("play")
-	public CardForm setupForm()
+	
+	
+	@GetMapping("play")
+	public String showCard(CardForm cardForm, Model model)
 	{
-		CardForm form = new CardForm();
-		return form;
+		// Get A Card(wrapping by Optional)
+		Optional<Card> cardOpt = cardservice.selectOneRandomCard();
+		//check if it is present
+		if (cardOpt.isPresent())
+		{
+			//Convert it to CardForm
+			Optional<CardForm> cardFormOpt =  cardOpt.map(t -> makeCardForm(t));
+			cardForm = cardFormOpt.get();
+		}
+		else
+		{
+			model.addAttribute("msg", "Card Not Found");
+			return "play";
+		}
+		
+		model.addAttribute("cardForm", cardForm);
+		return "play";
 	}
 	
 	@GetMapping("signup/index")
@@ -70,13 +90,6 @@ public class IncohearentViewController
 		}
 	}
 	
-	@GetMapping("play")
-	public String playView(CardForm cardForm, Model model)
-	{
-		model.addAttribute("title", "Are you ready to play?");
-		return "play";
-	}
-	
 	@GetMapping("register")
 	public String registerView(CardForm cardForm, Model model)
 	{
@@ -104,6 +117,42 @@ public class IncohearentViewController
 			//エラーがある場合は、登録画面を再表示
 			return "register";
 		}
+	}
+	
+	
+	
+	@PostMapping("check")
+	public String checkCard(CardForm cardForm, @RequestParam String answer, Model model)
+	{
+		if (cardservice.checkCard(cardForm.getCard_id(), answer))
+		{
+			model.addAttribute("msg", "Correct!");
+		}
+		else
+		{
+			model.addAttribute("msg", "Not Correct!");
+		}
+		return "answer";
+	}
+	
+	private Card makeCard(CardForm cardForm)
+	{
+		Card card = new Card();
+		card.setCard_id(cardForm.getCard_id());
+		card.setQuestion(cardForm.getQuestion());
+		card.setAnswer(cardForm.getAnswer());
+		card.setDescription(cardForm.getDescription());
+		return card;
+	}
+	
+	private CardForm makeCardForm(Card card)
+	{
+		CardForm form = new CardForm();
+		form.setCard_id(card.getCard_id());
+		form.setQuestion(card.getQuestion());
+		form.setAnswer(card.getAnswer());
+		form.setDescription(card.getDescription());
+		return form;
 	}
 	
 }

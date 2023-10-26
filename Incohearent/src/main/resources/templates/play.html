@@ -16,7 +16,21 @@
 			</div>
 		</div>
 	</header>
-	<h1 align="center">Are you ready?</h1>
+	
+	<h1>Incohearent</h1>
+	<h3>Card</h3>
+	<th:block th:if="${msg}">
+		<p th:text="${msg}" style="color:red"></p>
+		<a th:href="@{/Incohearent/confirm/}">Home</a>
+	</th:block>
+	<th:block th:unless="${msg}">
+		<p th:text="${cardForm.question}">Question</p>
+		<form th:action="@{/Incohearent/check}" th:object="${cardForm}" method="POST">
+			<input type="hidden" th:field="*{card_id}">
+			<input type="text" name="answer" placeholder="Answer">
+		</form>
+	</th:block>
+	
 	<footer>
 		<p align="center">copyright Teppei Abe</p>
 	</footer>
